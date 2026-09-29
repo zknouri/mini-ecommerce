@@ -1,3 +1,3 @@
-export default function Cartdrawer(){
-    return <p>Navbar</p>
+export default function Cartdrawer() {
+  return <p>Cartdrawer</p>;
 }

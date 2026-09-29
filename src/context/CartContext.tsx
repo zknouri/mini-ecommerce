@@ -18,10 +18,12 @@ export default function CartContextProvider({
 
   function addToCart(product: Product): void {
     setCart((prevCart) => {
+      // Check if  the product is already exists in the Cart
       const isProductInCart: boolean = prevCart.some(
         (cartItem) => cartItem.id === product.id,
       );
 
+      // Adding +1 in quantity if it exists
       if (isProductInCart) {
         return prevCart.map((cartItem) =>
           cartItem.id === product.id
@@ -33,6 +35,7 @@ export default function CartContextProvider({
         );
       }
 
+      // Adding the product to the Cart with quantity property if not
       return [...prevCart, { ...product, quantity: 1 }];
     });
   }
@@ -43,6 +46,7 @@ export default function CartContextProvider({
     );
   }
 
+  // Total Price
   const cartTotal = cart?.reduce(
     (total, item) => total + item.price * item.quantity,
     0,

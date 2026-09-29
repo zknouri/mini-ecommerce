@@ -1,3 +1,5 @@
-export default function ProductsGrid(){
-    return <p>Navbar</p>
+import ProductCard from "./ProductCard";
+
+export default function ProductsGrid() {
+  return <ProductCard />;
 }
