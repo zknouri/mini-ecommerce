@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import ProductsGrid from "./ProductsGrid";
 
 export default function Storefront() {
-  const [sortOption, setSortOption] = useState("Sort"); //
+  const [sortOption, setSortOption] = useState("Sort"); // Selected option state
   const sortRef = useRef<HTMLUListElement>(null); // For sort menu toggling
 
   function sortMenuToggleHandler() {

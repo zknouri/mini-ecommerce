@@ -5,7 +5,7 @@ export default function ProductCard() {
     <div className="bg-gray-100 rounded-4xl mt-6 border border-gray-300 w-90 h-98">
       <div className="relative flex flex-col items-center m-2 h-56 border border-x-0 border-t-0 border-b-gray-300">
         <img
-          src="/images/samsung-galaxy-s26-ultra-1.png"
+          src="/images/fairphone-6-plus-1.png"
           alt="blue fairphone 6 plus"
           className="h-54"
         />
