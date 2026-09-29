@@ -1,6 +1,14 @@
 import fiveStarsIcon from "../assets/icons/reviews/five-star-rating-icon.svg";
+import useCartContext from "../hooks/useCartContext";
+import type { Product } from "../utils/types";
 
 export default function ProductCard() {
+  const { addToCart } = useCartContext(); // addToCart: (product) => {}
+
+  function addToCartHandler(product: Product) {
+    addToCart(product);
+  }
+
   return (
     <div className="bg-gray-100 rounded-4xl mt-6 border border-gray-300 w-90 h-98">
       <div className="relative flex flex-col items-center m-2 h-56 border border-x-0 border-t-0 border-b-gray-300">
@@ -32,7 +40,18 @@ export default function ProductCard() {
             <p className="line-through">6999 MAD</p>
           </div>
 
-          <button className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer">
+          <button
+            onClick={() =>
+              addToCartHandler({
+                id: crypto.randomUUID(),
+                name: "Fairphone 6+, 256GB 12GB RAM, Cobalt Blue",
+                price: 6999,
+                image: "/images/fairphone-6-plus-1.png",
+                inStock: true,
+              })
+            }
+            className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
+          >
             <svg
               id="Layer_1"
               data-name="Layer 1"
