@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import Storefront from "./components/Storefront";
-import CartContextProvider from "./context/CartContext";
+import CartContextProvider from "./store/CartContext";
 
 function App() {
   return (

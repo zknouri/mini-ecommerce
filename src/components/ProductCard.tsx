@@ -1,11 +1,13 @@
-import fiveStarsIcon from "../assets/icons/reviews/five-star-rating-icon.svg";
 import useCartContext from "../hooks/useCartContext";
+
+import fiveStarsIcon from "../assets/icons/reviews/five-star-rating-icon.svg";
+
 import type { Product } from "../utils/types";
 
 export default function ProductCard() {
   const { addToCart } = useCartContext(); // addToCart: (product) => {}
 
-  function addToCartHandler(product: Product) {
+  function addToCartHandler(product: Product): void {
     addToCart(product);
   }
 

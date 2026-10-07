@@ -1,6 +1,7 @@
+import useCartContext from "../hooks/useCartContext";
+
 import appLogo from "../assets/img/phone-shop-logo.png";
 import cartLogo from "../assets/icons/bag-icon.svg";
-import useCartContext from "../hooks/useCartContext";
 
 export default function Navbar() {
   const { cart } = useCartContext(); // CartItem[]
