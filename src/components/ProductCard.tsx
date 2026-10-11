@@ -2,32 +2,32 @@ import useCartContext from "../hooks/useCartContext";
 
 import fiveStarsIcon from "../assets/icons/reviews/five-star-rating-icon.svg";
 
-import type { Product } from "../utils/types";
+import type { ProductCardProps } from "../utils/types";
 
-export default function ProductCard() {
+export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCartContext(); // addToCart: (product) => {}
-
-  function addToCartHandler(product: Product): void {
-    addToCart(product);
-  }
 
   return (
     <div className="bg-gray-100 rounded-4xl mt-6 border border-gray-300 w-90 h-98">
       <div className="relative flex flex-col items-center m-2 h-56 border border-x-0 border-t-0 border-b-gray-300">
         <img
-          src="/images/fairphone-6-plus-1.png"
+          src={product.image}
           alt="blue fairphone 6 plus"
           className="h-54"
         />
         <button className="absolute bg-[#0b7efd] rounded-full top-0 left-74 p-1 text-stone-50 text-2xl size-10 hover:text-pink-500 cursor-pointer">
           &#10084;
         </button>
-        <p className="absolute text-stone-50 bg-red-500 top-46 right-68 p-1 rounded-md">
-          10% off
-        </p>
+        {product.discount > 0 ? (
+          <p className="absolute text-stone-50 bg-red-500 top-46 right-66 p-1 rounded-md">
+            {product.discount}% OFF
+          </p>
+        ) : (
+          ""
+        )}
       </div>
       <div className="pb-6 px-4">
-        <h4 className="">Fairphone 6+, 256GB 12GB RAM, Cobalt Blue</h4>
+        <h4 className="text-[#001e58]">{product.name}</h4>
         <div className="flex gap-1">
           <img src={fiveStarsIcon} alt="five stars" className="w-20" />
           <p>5.0</p>
@@ -36,22 +36,23 @@ export default function ProductCard() {
 
         <div className="flex justify-between items-center">
           <div>
-            <p className="font-bold text-2xl">
-              {Math.round(6999 - 6999 * 0.1)} MAD
+            <p className="font-bold text-2xl text-[#0b7efd]">
+              {product.discount > 0
+                ? Math.round(
+                    product.price - (product.price * product.discount) / 100,
+                  )
+                : product.price}{" "}
+              Dh
             </p>
-            <p className="line-through">6999 MAD</p>
+            {product.discount > 0 ? (
+              <p className="line-through text-stone-500">{product.price} Dh</p>
+            ) : (
+              ""
+            )}
           </div>
 
           <button
-            onClick={() =>
-              addToCartHandler({
-                id: crypto.randomUUID(),
-                name: "Fairphone 6+, 256GB 12GB RAM, Cobalt Blue",
-                price: 6999,
-                image: "/images/fairphone-6-plus-1.png",
-                inStock: true,
-              })
-            }
+            onClick={() => addToCart(product)}
             className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
           >
             <svg
