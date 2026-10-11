@@ -1,19 +1,17 @@
 import { useRef, useState, type ChangeEvent } from "react";
 
-type ProductPriceRangeProps = {
-  minimum: number;
-  maximum: number;
-};
+import type { ProductPriceRangeProps } from "../utils/types";
 
 export default function ProductPriceRange({
   minimum,
   maximum,
+  filtersRef,
 }: ProductPriceRangeProps) {
   const rangeRef = useRef<HTMLDivElement>(null); // Range width and position change
-  const [minValue, setMinValue] = useState<number>(1500); // Min range slider value
-  const [maxValue, setMaxValue] = useState<number>(4000); // Max   //    //    //
-  const [minInputValue, setMinInputValue] = useState<number>(1500); // Min number input value
-  const [maxInputValue, setMaxInputValue] = useState<number>(4000); // Max   //    //    //
+  const [minValue, setMinValue] = useState<number>(minimum); // Min range slider value
+  const [maxValue, setMaxValue] = useState<number>(maximum); // Max   //    //    //
+  const [minInputValue, setMinInputValue] = useState<number>(minimum); // Min number input value
+  const [maxInputValue, setMaxInputValue] = useState<number>(maximum); // Max   //    //    //
 
   // onChange event of min range slider and min number input
   function minValueChangeHandler(event: ChangeEvent<HTMLInputElement>): void {
@@ -70,7 +68,7 @@ export default function ProductPriceRange({
   }
 
   return (
-    <div className="absolute z-10 bg-[#001e58] w-46 text-stone-50 p-2 mt-0.5 rounded-md">
+    <div ref={filtersRef} className=" hidden absolute z-10 bg-[#001e58] w-46 text-stone-50 p-2 mt-0.5 rounded-md animate-fade-in">
       <label>Price range</label>
       <div className="flex items-center relative my-4">
         <input
@@ -93,7 +91,7 @@ export default function ProductPriceRange({
         <div className="absolute h-2 w-full rounded-md bg-[#cceffc] z-1"></div>
         <div
           ref={rangeRef}
-          className="absolute h-2 w-[35.71%] left-[7.14%] rounded-md bg-[#0b7efd] z-2"
+          className="absolute h-2 w-full left-[0%] rounded-md bg-[#0b7efd] z-2"
         ></div>
       </div>
 

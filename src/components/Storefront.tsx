@@ -1,26 +1,52 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import ProductsGrid from "./ProductsGrid";
 import ProductPriceRange from "./ProductPriceRange";
+import type { StorefrontProps } from "../utils/types";
 
-export default function Storefront() {
+export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
   const [sortOption, setSortOption] = useState<string>("Sort"); // Selected option state
-  const sortRef = useRef<HTMLUListElement>(null); // Sort menu toggling
 
   function sortMenuToggleHandler(): void {
-    sortRef.current?.classList.toggle("hidden");
+    if (sortRef.current?.classList.contains("hidden")) {
+      sortRef.current?.classList.remove("hidden");
+    } else{
+    sortRef.current?.classList.add("hidden");
+    }
+
+    // Close filters menu when sort menu is open
+    if (!filtersRef.current?.classList.contains("hidden")) {
+      filtersRef.current?.classList.toggle("hidden");
+    }
+  }
+
+  function filtersMenuToggleHandler(): void {
+    if (filtersRef.current?.classList.contains("hidden")) {
+      filtersRef.current?.classList.remove("hidden");
+    }else {
+      filtersRef.current?.classList.add("hidden");
+    }
+
+    // Close sort menu when filters menu is open
+    if (!sortRef.current?.classList.contains("hidden")) {
+      sortRef.current?.classList.toggle("hidden");
+    }
   }
 
   // Selected option new state
   function sortOptionsHandler(option: string): void {
     setSortOption(option);
+    sortRef.current?.classList.toggle("hidden");
   }
 
   return (
     <section>
       <div className="flex justify-end gap-4">
         <div>
-          <button className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer ">
+          <button
+            onClick={filtersMenuToggleHandler}
+            className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer "
+          >
             <svg
               version="1.1"
               id="Layer_1"
@@ -38,7 +64,12 @@ export default function Storefront() {
             </svg>
             Filters
           </button>
-          <ProductPriceRange minimum={1000} maximum={8000}/>
+          {/* --- FILTERS MENU --- */}
+          <ProductPriceRange
+            filtersRef={filtersRef}
+            minimum={1000}
+            maximum={8000}
+          />
         </div>
         <div>
           <button
@@ -56,7 +87,7 @@ export default function Storefront() {
           </button>
           <ul
             ref={sortRef}
-            className="hidden absolute z-10 bg-[#001e58] w-44 text-stone-50 p-2 mt-0.5 rounded-md"
+            className="hidden absolute z-10 bg-[#001e58] w-44 text-stone-50 p-2 mt-0.5 rounded-md animate-fade-in"
           >
             <li
               onClick={() => sortOptionsHandler("The most popular")}
