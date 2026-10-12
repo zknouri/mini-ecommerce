@@ -21,7 +21,7 @@ export default function CartDrawer({ onCartClose }: CartDrawerProps) {
         
         <div className="z-20 fixed p-3 bottom-0 h-[15%] w-[80%] bg-gray-100">
           <div className="text-[#001e58]">
-            <p>Number of Items: {cart.length} </p>
+            <p>Number of items: {cart.reduce((itemsNumber, product) => itemsNumber + product.quantity, 0)} </p>
             <p>Total price: {cartTotal} Dh</p>
           </div>
 
