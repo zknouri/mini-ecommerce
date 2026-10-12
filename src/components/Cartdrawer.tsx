@@ -1,25 +1,35 @@
+import useCartContext from "../hooks/useCartContext";
 import type { CartDrawerProps } from "../utils/types";
 import CartItemCard from "./CartItemCard";
 
-export default function Cartdrawer({onCartClose}: CartDrawerProps) {
+export default function Cartdrawer({ onCartClose }: CartDrawerProps) {
+  const { cart, cartTotal } = useCartContext();
+
   return (
     <div className="z-10 bg-black/20 fixed top-0 right-0 h-screen w-screen">
       <div className="fixed top-0 right-0 h-[85%] w-[80%] bg-stone-200 overflow-y-auto overflow-x-hidden animate-cartdrawer-transform">
         <div className="flex justify-between items-center m-3">
           <h3 className="text-[#001e58]">My Cart</h3>
-          <button onClick={onCartClose} className="size-10 text-xl border border-gray-400 pt-1 pb-2 rounded-xl hover:bg-red-500 hover:text-stone-50 text-[#001e58] cursor-pointer">
+          <button
+            onClick={onCartClose}
+            className="size-10 text-xl border border-gray-400 pt-1 pb-2 rounded-xl hover:bg-red-500 hover:text-stone-50 text-[#001e58] cursor-pointer"
+          >
             &#10008;
           </button>
         </div>
-        <CartItemCard />
+        {cart.map(product => <CartItemCard key={product.id} product={product} />)}
+        
         <div className="z-20 fixed p-3 bottom-0 h-[15%] w-[80%] bg-gray-100">
           <div className="text-[#001e58]">
-            <p>Number of Items: 5 </p>
-            <p>Total price: 10999 Dh</p>
+            <p>Number of Items: {cart.length} </p>
+            <p>Total price: {cartTotal} Dh</p>
           </div>
 
           <div className="flex justify-between mt-4">
-            <button onClick={onCartClose} className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer">
+            <button
+              onClick={onCartClose}
+              className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
+            >
               <svg
                 id="Layer_1"
                 data-name="Layer 1"

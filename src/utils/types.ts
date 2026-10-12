@@ -53,3 +53,7 @@ export interface ProductCardProps {
   product: Product,
 
 }
+
+export interface CartItemCardProps {
+  product: CartItem;
+}
