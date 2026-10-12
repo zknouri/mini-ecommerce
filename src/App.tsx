@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import Cartdrawer from "./components/Cartdrawer";
+import CartDrawer from "./components/CartِِDrawer";
 import Modal from "./components/Modal";
 import Navbar from "./components/Navbar";
 import Storefront from "./components/Storefront";
@@ -26,7 +26,7 @@ function App() {
         </header>
         <main className="m-6">
           <Modal open={cartIsOpen} onClose={closeCartHandler}>
-            <Cartdrawer onCartClose={closeCartHandler} />
+            <CartDrawer onCartClose={closeCartHandler} />
           </Modal>
           <Storefront sortRef={sortRef} filtersRef={filtersRef}/>
         </main>

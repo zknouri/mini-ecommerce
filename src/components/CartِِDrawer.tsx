@@ -2,7 +2,7 @@ import useCartContext from "../hooks/useCartContext";
 import type { CartDrawerProps } from "../utils/types";
 import CartItemCard from "./CartItemCard";
 
-export default function Cartdrawer({ onCartClose }: CartDrawerProps) {
+export default function CartDrawer({ onCartClose }: CartDrawerProps) {
   const { cart, cartTotal } = useCartContext();
 
   return (
