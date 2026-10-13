@@ -48,7 +48,7 @@ export default function CartContextProvider({
 
   // Total Price
   const cartTotal: number = cart?.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + Math.round(item.price - item.price * item.discount / 100) * item.quantity,
     0,
   );
 

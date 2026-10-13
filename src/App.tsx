@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import CartDrawer from "./components/CartِِDrawer";
+import CartDrawer from "./components/CartDrawer";
 import Modal from "./components/Modal";
 import Navbar from "./components/Navbar";
 import Storefront from "./components/Storefront";
