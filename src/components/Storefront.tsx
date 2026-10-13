@@ -1,8 +1,9 @@
 import { useState } from "react";
 
+import type { StorefrontProps } from "../utils/types";
+
 import ProductsGrid from "./ProductsGrid";
 import ProductPriceRange from "./ProductPriceRange";
-import type { StorefrontProps } from "../utils/types";
 
 export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
   const [sortOption, setSortOption] = useState<string>("Sort"); // Selected option state
@@ -10,8 +11,8 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
   function sortMenuToggleHandler(): void {
     if (sortRef.current?.classList.contains("hidden")) {
       sortRef.current?.classList.remove("hidden");
-    } else{
-    sortRef.current?.classList.add("hidden");
+    } else {
+      sortRef.current?.classList.add("hidden");
     }
 
     // Close filters menu when sort menu is open
@@ -23,7 +24,7 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
   function filtersMenuToggleHandler(): void {
     if (filtersRef.current?.classList.contains("hidden")) {
       filtersRef.current?.classList.remove("hidden");
-    }else {
+    } else {
       filtersRef.current?.classList.add("hidden");
     }
 
@@ -67,8 +68,6 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
           {/* --- FILTERS MENU --- */}
           <ProductPriceRange
             filtersRef={filtersRef}
-            minimum={1000}
-            maximum={8000}
           />
         </div>
         <div>

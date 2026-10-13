@@ -5,7 +5,7 @@ export default function ProductsGrid() {
   return (
     <div className="flex flex-col items-center">
       {products.map((product) => (
-        <ProductCard
+        <ProductCard key={product.id}
           product={product}
         />
       ))}

@@ -25,8 +25,6 @@ export interface CartContextProviderProps {
 }
 
 export interface ProductPriceRangeProps {
-  minimum: number;
-  maximum: number;
   filtersRef: RefObject<HTMLDivElement | null>;
 }
 
@@ -56,4 +54,9 @@ export interface ProductCardProps {
 
 export interface CartItemCardProps {
   product: CartItem;
+}
+
+export interface PriceRange {
+  minimum: number;
+  maximum: number;
 }

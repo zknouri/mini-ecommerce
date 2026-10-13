@@ -21,7 +21,7 @@ function App() {
 
   return (
     <CartContextProvider>
-        <header className="flex justify-between items-center p-4">
+        <header className="z-30 sticky top-0 bg-stone-50 flex justify-between items-center p-4">
           <Navbar onCartOpen={openCartHandler} />
         </header>
         <main className="m-6">

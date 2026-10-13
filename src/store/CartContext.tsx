@@ -56,7 +56,7 @@ export default function CartContextProvider({
     cart,
     addToCart,
     removeFromCart,
-    cartTotal,
+    cartTotal
   };
 
   return <CartContext value={contextValue}>{children}</CartContext>;
