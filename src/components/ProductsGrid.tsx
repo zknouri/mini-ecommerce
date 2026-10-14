@@ -1,10 +1,10 @@
 import ProductCard from "./ProductCard";
-import { products } from "../lib/products";
+import { productsData } from "../lib/products";
 
 export default function ProductsGrid() {
   return (
     <div className="flex flex-col items-center">
-      {products.map((product) => (
+      {productsData.map((product) => (
         <ProductCard key={product.id}
           product={product}
         />

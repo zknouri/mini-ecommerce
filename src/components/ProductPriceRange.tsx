@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
 
 import type { PriceRange, ProductPriceRangeProps } from "../utils/types";
-import { products } from "../lib/products";
+import { productsData } from "../lib/products";
 
 export default function ProductPriceRange({
   filtersRef,
@@ -21,13 +21,13 @@ export default function ProductPriceRange({
 
   useEffect(() => {
     // Maximum Price
-    const maximumPrice: number = products?.reduce(
+    const maximumPrice: number = productsData?.reduce(
       (maximum, item) => (item.price > maximum ? item.price : maximum),
       0,
     );
 
     // Minimum Price
-    const minimumPrice: number = products?.reduce(
+    const minimumPrice: number = productsData?.reduce(
       (minimum, item) =>
         item.price - (item.price * item.discount) / 100 < minimum
           ? item.price - (item.price * item.discount) / 100
@@ -139,7 +139,7 @@ export default function ProductPriceRange({
         ></div>
       </div>
 
-      <div className="flex gap-1">
+      <div className="flex gap-1 mb-2">
         <div>
           <label htmlFor="min-value">From</label>
           <input
@@ -164,6 +164,11 @@ export default function ProductPriceRange({
             className="w-20 bg-stone-50 text-black rounded-md"
           />
         </div>
+      </div>
+      <div className="flex justify-end">
+        <button className="p-1 border-2 border-stone-50 rounded-xl hover:bg-[#0b7efd] cursor-pointer">
+          Apply
+        </button>
       </div>
     </div>
   );

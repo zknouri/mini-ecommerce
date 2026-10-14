@@ -1,4 +1,6 @@
-export const products = [
+import type { Product } from "../utils/types";
+
+export const productsData: Product[] = [
   {
     id: "pohne-1",
     name: "Fairphone 6+, 256GB 12GB RAM, Cobalt Blue",

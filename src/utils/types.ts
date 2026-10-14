@@ -13,6 +13,10 @@ export interface CartItem extends Product {
   quantity: number;
 }
 
+/////////////////////////////////////////////////
+////////////////// CartContext //////////////////
+/////////////////////////////////////////////////
+
 export interface CartContextType {
   cart: CartItem[];
   addToCart: (product: Product) => void;
@@ -23,6 +27,22 @@ export interface CartContextType {
 export interface CartContextProviderProps {
   children: ReactNode;
 }
+
+/////////////////////////////////////////////////
+//////////////// ProductsContext ////////////////
+/////////////////////////////////////////////////
+
+export interface ProductsContextType {
+  products : Product[];
+}
+
+export interface ProductsContextProviderProps {
+  children: ReactNode;
+}
+
+/////////////////////////////////////////////////
+////////////////// Components ///////////////////
+/////////////////////////////////////////////////
 
 export interface ProductPriceRangeProps {
   filtersRef: RefObject<HTMLDivElement | null>;
@@ -56,6 +76,7 @@ export interface CartItemCardProps {
   product: CartItem;
 }
 
+// State in ProductsPriceRange.tsx
 export interface PriceRange {
   minimum: number;
   maximum: number;
