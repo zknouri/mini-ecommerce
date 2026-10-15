@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
 
-import type { PriceRange, ProductPriceRangeProps } from "../utils/types";
+import type {
+  InputValues,
+  PriceRange,
+  ProductPriceRangeProps,
+  RangeValues,
+} from "../utils/types";
 import { productsData } from "../lib/products";
 
 export default function ProductPriceRange({
@@ -8,11 +13,15 @@ export default function ProductPriceRange({
 }: ProductPriceRangeProps) {
   const rangeRef = useRef<HTMLDivElement>(null); // Range width and position change
 
-  const [minValue, setMinValue] = useState<number>(1000); // Min range slider value
-  const [maxValue, setMaxValue] = useState<number>(20000); // Max   //    //    //
+  const [rangeValues, setRangeValues] = useState<RangeValues>({
+    minValue: 1000,
+    maxValue: 20000,
+  });
 
-  const [minInputValue, setMinInputValue] = useState<number>(1000); // Min number input value
-  const [maxInputValue, setMaxInputValue] = useState<number>(20000); // Max   //    //    //
+  const [inputValues, setInputValues] = useState<InputValues>({
+    minInputValue: 1000,
+    maxInputValue: 20000,
+  });
 
   const [priceRange, setPriceRange] = useState<PriceRange>({
     minimum: 0,
@@ -40,10 +49,17 @@ export default function ProductPriceRange({
       minimum: minimumPrice,
       maximum: maximumPrice,
     }));
-    setMinValue(minimumPrice);
-    setMinInputValue(minimumPrice);
-    setMaxValue(maximumPrice);
-    setMaxInputValue(maximumPrice);
+
+    setRangeValues((prevRangeValues) => ({
+      ...prevRangeValues,
+      minValue: minimumPrice,
+      maxValue: maximumPrice,
+    }));
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      minInputValue: minimumPrice,
+      maxInputValue: maximumPrice,
+    }));
   }, []);
 
   // onChange event of min range slider and min number input
@@ -51,12 +67,18 @@ export default function ProductPriceRange({
     const value: number = +event.target.value;
 
     // Update the state of the min input value
-    setMinInputValue(value);
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      minInputValue: value,
+    }));
 
     // Min input value must be between the minimum price and max value to be valid
-    if (value >= priceRange.minimum && value < maxValue) {
+    if (value >= priceRange.minimum && value < rangeValues.maxValue) {
       // Update the state of the minValue
-      setMinValue(Math.min(value, maxValue - 1));
+      setRangeValues((prevRangeValues) => ({
+        ...prevRangeValues,
+        minValue: Math.min(value, rangeValues.maxValue - 1),
+      }));
 
       // Calculate percentage value between the minimum price and the min value
       // ((min value - minimum price) / (minimum price - maximum price)) * 100
@@ -67,7 +89,7 @@ export default function ProductPriceRange({
       // // between the max value and the maximum price
       // ((max value - minimum price) / (minimum price - maximum price)) * 100
       const maxPercentage: number =
-        ((maxValue - priceRange.minimum) /
+        ((rangeValues.maxValue - priceRange.minimum) /
           (priceRange.maximum - priceRange.minimum)) *
         100;
 
@@ -85,15 +107,21 @@ export default function ProductPriceRange({
     const value: number = +event.target.value;
 
     // Update the state of the max input value
-    setMaxInputValue(value);
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      maxInputValue: value,
+    }));
 
     // Max input value must be between the maximum price and min value to be valid
-    if (value > minValue && value <= priceRange.maximum) {
+    if (value > rangeValues.minValue && value <= priceRange.maximum) {
       // Update the state of the maxValue
-      setMaxValue(Math.max(value, minValue + 1));
+      setRangeValues((prevRangeValues) => ({
+        ...prevRangeValues,
+        maxValue: Math.max(value, rangeValues.minValue + 1),
+      }));
 
       const minPercentage: number =
-        ((minValue - priceRange.minimum) /
+        ((rangeValues.minValue - priceRange.minimum) /
           (priceRange.maximum - priceRange.minimum)) *
         100;
       // We used value instead of maxValue, because the maxValue state is not updated yet
@@ -119,7 +147,7 @@ export default function ProductPriceRange({
           type="range"
           min={priceRange.minimum}
           max={priceRange.maximum}
-          value={minValue}
+          value={rangeValues.minValue}
           className="absolute z-5 w-full appearance-none h-0 outline-0 pointer-events-none [&::-webkit-slider-thumb:hover]:scale-110 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:bg-[#0b7efd] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-stone-50 [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb:hover]:scale-110 [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:bg-[#0b7efd] [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-stone-50 [&::-moz-range-thumb]:cursor-pointer"
           onChange={minValueChangeHandler}
         />
@@ -127,7 +155,7 @@ export default function ProductPriceRange({
           type="range"
           min={priceRange.minimum}
           max={priceRange.maximum}
-          value={maxValue}
+          value={rangeValues.maxValue}
           className="absolute z-4 w-full appearance-none h-0 outline-0 pointer-events-none [&::-webkit-slider-thumb:hover]:scale-110 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:bg-[#0b7efd] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-stone-50 [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb:hover]:scale-110 [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:bg-[#0b7efd] [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-stone-50 [&::-moz-range-thumb]:cursor-pointer"
           onChange={maxValueChangeHandler}
         />
@@ -143,7 +171,7 @@ export default function ProductPriceRange({
         <div>
           <label htmlFor="min-value">From</label>
           <input
-            value={minInputValue}
+            value={inputValues.minInputValue}
             onChange={minValueChangeHandler}
             min={priceRange.minimum}
             max={priceRange.maximum}
@@ -155,7 +183,7 @@ export default function ProductPriceRange({
         <div>
           <label htmlFor="max-value">To</label>
           <input
-            value={maxInputValue}
+            value={inputValues.maxInputValue}
             onChange={maxValueChangeHandler}
             min={priceRange.minimum}
             max={priceRange.maximum}
