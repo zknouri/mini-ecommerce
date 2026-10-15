@@ -14,11 +14,35 @@ export const ProductsContext = createContext<ProductsContextType | undefined>(
 export default function ProductsContextProvider({
   children,
 }: ProductsContextProviderProps) {
-    const [products, setProducts] = useState<Product[]>(productsData);
+  const [products, setProducts] = useState<Product[]>(productsData);
 
-    const contextValue: ProductsContextType = {
-        products,
+  function sortProducts(sortingOption: string) {
+    if (sortingOption === "increasing") {
+      setProducts(
+        products.toSorted((product1, product2) =>
+          product1.price > product2.price ? 1 : -1,
+        ),
+      );
+    } else if (sortingOption === "decreasing") {
+      setProducts(
+        products.toSorted((product1, product2) =>
+          product1.price < product2.price ? 1 : -1,
+        ),
+      );
     }
+    {
+      /* else if(sortingOption === 'newest'){
+
+    } else if(sortingOption === 'popular'){
+
+    } */
+    }
+  }
+
+  const contextValue: ProductsContextType = {
+    products,
+    sortProducts,
+  };
 
   return <ProductsContext value={contextValue}>{children}</ProductsContext>;
 }

@@ -5,6 +5,7 @@ import Modal from "./components/Modal";
 import Navbar from "./components/Navbar";
 import Storefront from "./components/Storefront";
 import CartContextProvider from "./store/CartContext";
+import ProductsContextProvider from "./store/ProductsContext";
 
 function App() {
   const [cartIsOpen, setCartIsOpen] = useState<boolean>(false);
@@ -21,15 +22,17 @@ function App() {
 
   return (
     <CartContextProvider>
-        <header className="z-30 sticky top-0 bg-stone-50 flex justify-between items-center p-4">
-          <Navbar onCartOpen={openCartHandler} />
-        </header>
-        <main className="m-6">
-          <Modal open={cartIsOpen} onClose={closeCartHandler}>
-            <CartDrawer onCartClose={closeCartHandler} />
-          </Modal>
-          <Storefront sortRef={sortRef} filtersRef={filtersRef}/>
-        </main>
+      <header className="z-30 sticky top-0 bg-stone-50 flex justify-between items-center p-4">
+        <Navbar onCartOpen={openCartHandler} />
+      </header>
+      <main className="m-6">
+        <Modal open={cartIsOpen} onClose={closeCartHandler}>
+          <CartDrawer onCartClose={closeCartHandler} />
+        </Modal>
+        <ProductsContextProvider>
+          <Storefront sortRef={sortRef} filtersRef={filtersRef} />
+        </ProductsContextProvider>
+      </main>
     </CartContextProvider>
   );
 }

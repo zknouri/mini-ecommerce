@@ -4,7 +4,7 @@ export interface Product {
   id: string;
   name: string;
   price: number;
-  discount: number,
+  discount: number;
   image: string;
   inStock: boolean;
 }
@@ -33,7 +33,8 @@ export interface CartContextProviderProps {
 /////////////////////////////////////////////////
 
 export interface ProductsContextType {
-  products : Product[];
+  products: Product[];
+  sortProducts: (sortingOption: string) => void;
 }
 
 export interface ProductsContextProviderProps {
@@ -68,8 +69,7 @@ export interface StorefrontProps {
 }
 
 export interface ProductCardProps {
-  product: Product,
-
+  product: Product;
 }
 
 export interface CartItemCardProps {

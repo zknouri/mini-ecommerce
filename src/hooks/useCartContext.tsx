@@ -8,7 +8,9 @@ export default function useCartContext() {
   const context = useContext<CartContextType | undefined>(CartContext);
 
   if (context === undefined) {
-    throw new Error("useContext must be used between <CartContextProvider>");
+    throw new Error(
+      "useCartContext must be used between <CartContextProvider>",
+    );
   }
 
   return context;

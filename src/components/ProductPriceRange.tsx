@@ -149,7 +149,7 @@ export default function ProductPriceRange({
             max={priceRange.maximum}
             type="number"
             id="min-value"
-            className="w-20 bg-stone-50 text-black rounded-md"
+            className="w-20 bg-stone-50 text-black rounded-md p-1"
           />
         </div>
         <div>
@@ -161,12 +161,12 @@ export default function ProductPriceRange({
             max={priceRange.maximum}
             type="number"
             id="max-value"
-            className="w-20 bg-stone-50 text-black rounded-md"
+            className="w-20 bg-stone-50 text-black rounded-md p-1"
           />
         </div>
       </div>
       <div className="flex justify-end">
-        <button className="p-1 border-2 border-stone-50 rounded-xl hover:bg-[#0b7efd] cursor-pointer">
+        <button className="p-1.5 border-2 border-stone-50 rounded-md hover:bg-[#0b7efd] cursor-pointer">
           Apply
         </button>
       </div>

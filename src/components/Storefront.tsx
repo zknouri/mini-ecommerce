@@ -4,8 +4,10 @@ import type { StorefrontProps } from "../utils/types";
 
 import ProductsGrid from "./ProductsGrid";
 import ProductPriceRange from "./ProductPriceRange";
+import useProductsContext from "../hooks/useProductsContext";
 
 export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
+  const { sortProducts } = useProductsContext();
   const [sortOption, setSortOption] = useState<string>("Sort"); // Selected option state
 
   function sortMenuToggleHandler(): void {
@@ -38,6 +40,13 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
   function sortOptionsHandler(option: string): void {
     setSortOption(option);
     sortRef.current?.classList.toggle("hidden");
+
+    // Sort product by selected option
+    if (option === "Increasing price") {
+      sortProducts("increasing");
+    } else if (option === "Decreasing price") {
+      sortProducts("decreasing");
+    }
   }
 
   return (
@@ -66,9 +75,7 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
             Filters
           </button>
           {/* --- FILTERS MENU --- */}
-          <ProductPriceRange
-            filtersRef={filtersRef}
-          />
+          <ProductPriceRange filtersRef={filtersRef} />
         </div>
         <div>
           <button
@@ -107,10 +114,10 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
               Increasing price
             </li>
             <li
-              onClick={() => sortOptionsHandler("Decresing price")}
+              onClick={() => sortOptionsHandler("Decreasing price")}
               className="hover:bg-[#0b7efd] rounded-md p-1 cursor-pointer"
             >
-              Decresing price
+              Decreasing price
             </li>
           </ul>
         </div>
