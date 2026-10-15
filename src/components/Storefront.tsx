@@ -10,12 +10,9 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
   const { sortProducts } = useProductsContext();
   const [sortOption, setSortOption] = useState<string>("Sort"); // Selected option state
 
-  function sortMenuToggleHandler(): void {
-    if (sortRef.current?.classList.contains("hidden")) {
-      sortRef.current?.classList.remove("hidden");
-    } else {
-      sortRef.current?.classList.add("hidden");
-    }
+  function onSortClickHandler(): void {
+    // Show/Hide sort menu
+    sortRef.current?.classList.toggle("hidden");
 
     // Close filters menu when sort menu is open
     if (!filtersRef.current?.classList.contains("hidden")) {
@@ -23,12 +20,9 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
     }
   }
 
-  function filtersMenuToggleHandler(): void {
-    if (filtersRef.current?.classList.contains("hidden")) {
-      filtersRef.current?.classList.remove("hidden");
-    } else {
-      filtersRef.current?.classList.add("hidden");
-    }
+  function onFiltersClickHandler(): void {
+    // Show/Hide filters menu
+    filtersRef.current?.classList.toggle("hidden");
 
     // Close sort menu when filters menu is open
     if (!sortRef.current?.classList.contains("hidden")) {
@@ -38,10 +32,10 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
 
   // Selected option new state
   function sortOptionsHandler(option: string): void {
-    setSortOption(option);
+    setSortOption(option); // To show it in the Sort button
     sortRef.current?.classList.toggle("hidden");
 
-    // Sort product by selected option
+    // Sort products by selected option in the products context
     if (option === "Increasing price") {
       sortProducts("increasing");
     } else if (option === "Decreasing price") {
@@ -54,7 +48,7 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
       <div className="flex justify-end gap-4">
         <div>
           <button
-            onClick={filtersMenuToggleHandler}
+            onClick={onFiltersClickHandler}
             className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer "
           >
             <svg
@@ -79,7 +73,7 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
         </div>
         <div>
           <button
-            onClick={sortMenuToggleHandler}
+            onClick={onSortClickHandler}
             className="flex items-center gap-2 w-44 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
           >
             <svg

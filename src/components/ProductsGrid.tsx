@@ -5,7 +5,7 @@ export default function ProductsGrid() {
   const { products } = useProductsContext();
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="grid grid-cols-1 justify-items-center">
       {products.map((product) => (
         <ProductCard key={product.id}
           product={product}

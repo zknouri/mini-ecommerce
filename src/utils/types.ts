@@ -81,3 +81,13 @@ export interface PriceRange {
   minimum: number;
   maximum: number;
 }
+
+export interface RangeValues {
+  minValue: number;
+  maxValue: number;
+}
+
+export interface InputValues {
+  minInputValue: number;
+  maxInputValue: number;
+}

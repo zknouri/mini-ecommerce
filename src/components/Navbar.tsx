@@ -2,6 +2,7 @@ import useCartContext from "../hooks/useCartContext";
 
 import appLogo from "../assets/img/phone-shop-logo.png";
 import cartLogo from "../assets/icons/bag-icon.svg";
+
 import type { NavbarProps } from "../utils/types";
 
 export default function Navbar({onCartOpen}: NavbarProps) {
