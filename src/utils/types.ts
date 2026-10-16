@@ -1,4 +1,4 @@
-import type { ReactNode, RefObject } from "react";
+import type { Dispatch, ReactNode, RefObject, SetStateAction } from "react";
 
 export interface Product {
   id: string;
@@ -35,6 +35,10 @@ export interface CartContextProviderProps {
 export interface ProductsContextType {
   products: Product[];
   sortProducts: (sortingOption: string) => void;
+  setFilters: (filter: string, values: PriceRange) => void;
+  resetFilters: () => void;
+  sortOption: string;
+  setSortOption: Dispatch<SetStateAction<string>>;
 }
 
 export interface ProductsContextProviderProps {
@@ -76,7 +80,7 @@ export interface CartItemCardProps {
   product: CartItem;
 }
 
-// State in ProductsPriceRange.tsx
+////////////////// ProductsPriceRange.tsx ///////////////////
 export interface PriceRange {
   minimum: number;
   maximum: number;

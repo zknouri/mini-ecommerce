@@ -53,7 +53,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           <button
             onClick={() => addToCart(product)}
-            className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
+            className="flex items-center gap-2 font-bold bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
           >
             <svg
               id="Layer_1"

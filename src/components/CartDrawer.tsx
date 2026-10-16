@@ -11,7 +11,7 @@ export default function CartDrawer({ onCartClose }: CartDrawerProps) {
     <div className="z-10 bg-black/20 fixed top-0 right-0 h-screen w-screen">
       <div className="fixed top-0 right-0 h-[85%] w-[80%] bg-stone-200 overflow-y-auto overflow-x-hidden animate-cartdrawer-transform">
         <div className="flex justify-between items-center m-3">
-          <h3 className="text-[#001e58]">My Cart</h3>
+          <h3 className="text-[#001e58]">Phone Shop Cart</h3>
           <button
             onClick={onCartClose}
             className="size-10 text-xl border border-gray-400 pt-1 pb-2 rounded-xl hover:bg-red-500 hover:text-stone-50 text-[#001e58] cursor-pointer"
@@ -30,7 +30,7 @@ export default function CartDrawer({ onCartClose }: CartDrawerProps) {
           <div className="flex justify-between mt-4">
             <button
               onClick={onCartClose}
-              className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
+              className="flex items-center gap-2 font-bold bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
             >
               <svg
                 id="Layer_1"
@@ -44,7 +44,7 @@ export default function CartDrawer({ onCartClose }: CartDrawerProps) {
               </svg>
               Continue shopping
             </button>
-            <button className="flex items-center gap-2 border-2 border-[#001e58] hover:bg-[#0b7efd] hover:text-stone-50 hover:border-[#0b7efd] text-stone-[#001e58] rounded-md p-2 cursor-pointer">
+            <button className="flex items-center gap-2 font-bold border-2 border-[#001e58] hover:bg-[#0b7efd] hover:text-stone-50 hover:border-[#0b7efd] text-stone-[#001e58] rounded-md p-2 cursor-pointer">
               Confirm my cart
             </button>
           </div>

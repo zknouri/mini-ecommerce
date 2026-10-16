@@ -7,8 +7,7 @@ import ProductPriceRange from "./ProductPriceRange";
 import useProductsContext from "../hooks/useProductsContext";
 
 export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
-  const { sortProducts } = useProductsContext();
-  const [sortOption, setSortOption] = useState<string>("Sort"); // Selected option state
+  const { sortProducts, sortOption, setSortOption } = useProductsContext();
 
   function onSortClickHandler(): void {
     // Show/Hide sort menu
@@ -49,7 +48,7 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
         <div>
           <button
             onClick={onFiltersClickHandler}
-            className="flex items-center gap-2 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer "
+            className="flex items-center gap-2 font-bold bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer "
           >
             <svg
               version="1.1"
@@ -74,7 +73,7 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
         <div>
           <button
             onClick={onSortClickHandler}
-            className="flex items-center gap-2 w-44 bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
+            className="flex items-center gap-2 w-44 font-bold bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -87,13 +86,13 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
           </button>
           <ul
             ref={sortRef}
-            className="hidden absolute z-10 bg-[#001e58] w-44 text-stone-50 p-2 mt-0.5 rounded-md animate-fade-in"
+            className="hidden absolute z-10 font-bold bg-[#001e58] w-44 text-stone-50 p-2 mt-0.5 rounded-md animate-fade-in"
           >
             <li
-              onClick={() => sortOptionsHandler("The most popular")}
+              onClick={() => sortOptionsHandler("Most popular")}
               className="hover:bg-[#0b7efd] rounded-md p-1 cursor-pointer"
             >
-              The most popular
+              Most popular
             </li>
             <li
               onClick={() => sortOptionsHandler("Newest")}

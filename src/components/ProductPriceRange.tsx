@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
+import useProductsContext from "../hooks/useProductsContext";
 
 import type {
   InputValues,
@@ -6,11 +7,11 @@ import type {
   ProductPriceRangeProps,
   RangeValues,
 } from "../utils/types";
-import { productsData } from "../lib/products";
 
 export default function ProductPriceRange({
   filtersRef,
 }: ProductPriceRangeProps) {
+  const { products, setFilters, resetFilters } = useProductsContext();
   const rangeRef = useRef<HTMLDivElement>(null); // Range width and position change
 
   const [rangeValues, setRangeValues] = useState<RangeValues>({
@@ -30,13 +31,13 @@ export default function ProductPriceRange({
 
   useEffect(() => {
     // Maximum Price
-    const maximumPrice: number = productsData?.reduce(
+    const maximumPrice: number = products?.reduce(
       (maximum, item) => (item.price > maximum ? item.price : maximum),
       0,
     );
 
     // Minimum Price
-    const minimumPrice: number = productsData?.reduce(
+    const minimumPrice: number = products?.reduce(
       (minimum, item) =>
         item.price - (item.price * item.discount) / 100 < minimum
           ? item.price - (item.price * item.discount) / 100
@@ -136,12 +137,38 @@ export default function ProductPriceRange({
     }
   }
 
+  function filtersResetHandler(): void {
+    // Reset range input
+    setRangeValues((prevRangeValues) => ({
+      ...prevRangeValues,
+      minValue: priceRange.minimum,
+      maxValue: priceRange.maximum,
+    }));
+
+    // Reset number input
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      minInputValue: priceRange.minimum,
+      maxInputValue: priceRange.maximum,
+    }));
+
+    // Reset range percentage
+    if (rangeRef && rangeRef.current) {
+        // Update the range width in percentage
+        rangeRef.current.style.width = "100%";
+        // Update the range position to the left
+        rangeRef.current.style.left = "0%";
+      }
+
+    resetFilters();
+  }
+
   return (
     <div
       ref={filtersRef}
       className=" hidden absolute z-10 bg-[#001e58] w-46 text-stone-50 p-2 mt-0.5 rounded-md animate-fade-in"
     >
-      <label>Price range</label>
+      <p className="font-bold">Price range</p>
       <div className="flex items-center relative my-4">
         <input
           type="range"
@@ -193,9 +220,23 @@ export default function ProductPriceRange({
           />
         </div>
       </div>
-      <div className="flex justify-end">
-        <button className="p-1.5 border-2 border-stone-50 rounded-md hover:bg-[#0b7efd] cursor-pointer">
+      <div className="flex gap-1 justify-end">
+        <button
+          onClick={() =>
+            setFilters("price-range", {
+              minimum: rangeValues.minValue,
+              maximum: rangeValues.maxValue,
+            })
+          }
+          className="p-1.5 font-bold border-2 border-stone-50 rounded-md hover:bg-[#0b7efd] hover:border-[#0b7efd] cursor-pointer"
+        >
           Apply
+        </button>
+        <button
+          onClick={() => filtersResetHandler()}
+          className="p-1.5 font-bold text-red-500 border-2 border-red-500 rounded-md hover:bg-red-500 hover:text-stone-50 cursor-pointer"
+        >
+          Clear
         </button>
       </div>
     </div>
