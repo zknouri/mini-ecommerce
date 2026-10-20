@@ -40,6 +40,13 @@
 @theme {
   --animate-cartdrawer-transform: cartdrawer-transform 0.3s ease-in-out;
   --animate-fade-in: fade-in 0.3s ease-in-out;
+  --breakpoint-2sm: 22rem;
+  --breakpoint-sm: 38rem;
+  --breakpoint-md: 44rem;
+  --breakpoint-xl: 84rem;
+  --breakpoint-2xl: 102rem;
+  --breakpoint-3xl: 108rem;
+  --breakpoint-4xl: 116rem;
 
   @keyframes cartdrawer-transform {
     0% {

@@ -4,13 +4,13 @@ import useProductsContext from "../hooks/useProductsContext";
 import type {
   InputValues,
   PriceRange,
-  ProductPriceRangeProps,
+  ProductsPriceRangeProps,
   RangeValues,
 } from "../utils/types";
 
-export default function ProductPriceRange({
-  filtersRef,
-}: ProductPriceRangeProps) {
+export default function ProductsPriceRange({
+  filtersRef
+}: ProductsPriceRangeProps) {
   const { products, setFilters, resetFilters } = useProductsContext();
   const rangeRef = useRef<HTMLDivElement>(null); // Range width and position change
 
@@ -154,11 +154,11 @@ export default function ProductPriceRange({
 
     // Reset range percentage
     if (rangeRef && rangeRef.current) {
-        // Update the range width in percentage
-        rangeRef.current.style.width = "100%";
-        // Update the range position to the left
-        rangeRef.current.style.left = "0%";
-      }
+      // Update the range width in percentage
+      rangeRef.current.style.width = "100%";
+      // Update the range position to the left
+      rangeRef.current.style.left = "0%";
+    }
 
     resetFilters();
   }
@@ -166,16 +166,16 @@ export default function ProductPriceRange({
   return (
     <div
       ref={filtersRef}
-      className=" hidden absolute z-10 bg-[#001e58] w-46 text-stone-50 p-2 mt-0.5 rounded-md animate-fade-in"
+      className="hidden absolute xl:block xl:relative xl:mt-6 z-10 xl:bg-gray-100 xl:border xl:border-gray-300 bg-[#001e58] w-70 text-stone-50 p-2 mt-0.5 rounded-md animate-fade-in"
     >
-      <p className="font-bold">Price range</p>
+      <p className="font-bold xl:text-[#001e58]">Price range</p>
       <div className="flex items-center relative my-4">
         <input
           type="range"
           min={priceRange.minimum}
           max={priceRange.maximum}
           value={rangeValues.minValue}
-          className="absolute z-5 w-full appearance-none h-0 outline-0 pointer-events-none [&::-webkit-slider-thumb:hover]:scale-110 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:bg-[#0b7efd] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-stone-50 [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb:hover]:scale-110 [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:bg-[#0b7efd] [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-stone-50 [&::-moz-range-thumb]:cursor-pointer"
+          className="absolute z-5 w-full appearance-none h-0 outline-0 pointer-events-none [&::-webkit-slider-thumb:active]:scale-110 [&::-webkit-slider-thumb:hover]:scale-110 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:bg-[#0b7efd] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-stone-50 xl:[&::-webkit-slider-thumb]:border-[#001e58] [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb:active]:scale-110 [&::-moz-range-thumb:hover]:scale-110 [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:bg-[#0b7efd] [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-stone-50 [&::-moz-range-thumb]:cursor-pointer"
           onChange={minValueChangeHandler}
         />
         <input
@@ -183,7 +183,7 @@ export default function ProductPriceRange({
           min={priceRange.minimum}
           max={priceRange.maximum}
           value={rangeValues.maxValue}
-          className="absolute z-4 w-full appearance-none h-0 outline-0 pointer-events-none [&::-webkit-slider-thumb:hover]:scale-110 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:bg-[#0b7efd] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-stone-50 [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb:hover]:scale-110 [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:bg-[#0b7efd] [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-stone-50 [&::-moz-range-thumb]:cursor-pointer"
+          className="absolute z-4 w-full appearance-none h-0 outline-0 pointer-events-none [&::-webkit-slider-thumb:active]:scale-110 [&::-webkit-slider-thumb:hover]:scale-110 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:bg-[#0b7efd] [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-stone-50 xl:[&::-webkit-slider-thumb]:border-[#001e58] [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb:active]:scale-110 [&::-moz-range-thumb:hover]:scale-110 [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:bg-[#0b7efd] [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-stone-50 [&::-moz-range-thumb]:cursor-pointer"
           onChange={maxValueChangeHandler}
         />
 
@@ -195,8 +195,10 @@ export default function ProductPriceRange({
       </div>
 
       <div className="flex gap-1 mb-2">
-        <div>
-          <label htmlFor="min-value">From</label>
+        <div className="flex flex-col">
+          <label htmlFor="min-value" className="xl:text-[#001e58]">
+            From
+          </label>
           <input
             value={inputValues.minInputValue}
             onChange={minValueChangeHandler}
@@ -204,11 +206,13 @@ export default function ProductPriceRange({
             max={priceRange.maximum}
             type="number"
             id="min-value"
-            className="w-20 bg-stone-50 text-black rounded-md p-1"
+            className="w-20 bg-stone-50 text-black rounded-md p-1 xl:border xl:border-[#001e58]"
           />
         </div>
-        <div>
-          <label htmlFor="max-value">To</label>
+        <div className="flex flex-col">
+          <label htmlFor="max-value" className="xl:text-[#001e58]">
+            To
+          </label>
           <input
             value={inputValues.maxInputValue}
             onChange={maxValueChangeHandler}
@@ -216,11 +220,11 @@ export default function ProductPriceRange({
             max={priceRange.maximum}
             type="number"
             id="max-value"
-            className="w-20 bg-stone-50 text-black rounded-md p-1"
+            className="w-20 bg-stone-50 text-black rounded-md p-1 xl:border xl:border-[#001e58]"
           />
         </div>
       </div>
-      <div className="flex gap-1 justify-end">
+      <div className="flex gap-2 justify-end">
         <button
           onClick={() =>
             setFilters("price-range", {
@@ -228,13 +232,13 @@ export default function ProductPriceRange({
               maximum: rangeValues.maxValue,
             })
           }
-          className="p-1.5 font-bold border-2 border-stone-50 rounded-md hover:bg-[#0b7efd] hover:border-[#0b7efd] cursor-pointer"
+          className="p-1.5 font-bold border-2 border-stone-50 xl:border-[#001e58] xl:text-[#001e58] rounded-md xl:hover:text-stone-50 hover:bg-[#0b7efd] active:bg-[#0b7efd] active:border-[#0b7efd] hover:border-[#0b7efd] cursor-pointer"
         >
           Apply
         </button>
         <button
           onClick={() => filtersResetHandler()}
-          className="p-1.5 font-bold text-red-500 border-2 border-red-500 rounded-md hover:bg-red-500 hover:text-stone-50 cursor-pointer"
+          className="p-1.5 font-bold text-red-500 border-2 border-red-500 rounded-md hover:bg-red-500 active:bg-red-500 hover:text-stone-50 active:text-stone-50 cursor-pointer"
         >
           Clear
         </button>

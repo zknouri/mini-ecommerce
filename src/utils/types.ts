@@ -49,8 +49,8 @@ export interface ProductsContextProviderProps {
 ////////////////// Components ///////////////////
 /////////////////////////////////////////////////
 
-export interface ProductPriceRangeProps {
-  filtersRef: RefObject<HTMLDivElement | null>;
+export interface ProductsPriceRangeProps {
+  filtersRef?: RefObject<HTMLDivElement | null>;
 }
 
 export interface ModalProps {
@@ -65,11 +65,6 @@ export interface CartDrawerProps {
 
 export interface NavbarProps {
   onCartOpen: () => void;
-}
-
-export interface StorefrontProps {
-  sortRef: RefObject<HTMLUListElement | null>;
-  filtersRef: RefObject<HTMLDivElement | null>;
 }
 
 export interface ProductCardProps {

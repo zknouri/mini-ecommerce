@@ -1,13 +1,13 @@
-import { useState } from "react";
-
-import type { StorefrontProps } from "../utils/types";
+import { useRef } from "react";
 
 import ProductsGrid from "./ProductsGrid";
-import ProductPriceRange from "./ProductPriceRange";
+import ProductsPriceRange from "./ProductsPriceRange";
 import useProductsContext from "../hooks/useProductsContext";
 
-export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
+export default function Storefront() {
   const { sortProducts, sortOption, setSortOption } = useProductsContext();
+  const filtersRef = useRef<HTMLDivElement | null>(null); // Filters menu toggling
+  const sortRef = useRef<HTMLUListElement | null>(null); // Sort menu toggling
 
   function onSortClickHandler(): void {
     // Show/Hide sort menu
@@ -43,12 +43,12 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
   }
 
   return (
-    <section>
+    <section className="xl:mx-2 2xl:mx-40 3xl:mx-50 4xl:mx-70">
       <div className="flex justify-end gap-4">
         <div>
           <button
             onClick={onFiltersClickHandler}
-            className="flex items-center gap-2 font-bold bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer "
+            className="xl:hidden flex items-center gap-2 font-bold bg-[#001e58] hover:bg-[#0b7efd] active:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
           >
             <svg
               version="1.1"
@@ -68,12 +68,14 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
             Filters
           </button>
           {/* --- FILTERS MENU --- */}
-          <ProductPriceRange filtersRef={filtersRef} />
+          <div className="">
+            <ProductsPriceRange key="small-screen" filtersRef={filtersRef} />
+          </div>
         </div>
         <div>
           <button
             onClick={onSortClickHandler}
-            className="flex items-center gap-2 w-44 font-bold bg-[#001e58] hover:bg-[#0b7efd] text-stone-50 rounded-md p-2 cursor-pointer"
+            className="flex items-center gap-2 w-44 font-bold bg-[#001e58] hover:bg-[#0b7efd] active:bg-[#0b7efd]  text-stone-50 rounded-md p-2 cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -90,32 +92,40 @@ export default function Storefront({ sortRef, filtersRef }: StorefrontProps) {
           >
             <li
               onClick={() => sortOptionsHandler("Most popular")}
-              className="hover:bg-[#0b7efd] rounded-md p-1 cursor-pointer"
+              className="hover:bg-[#0b7efd] active:bg-[#0b7efd]  rounded-md p-1 cursor-pointer"
             >
               Most popular
             </li>
             <li
               onClick={() => sortOptionsHandler("Newest")}
-              className="hover:bg-[#0b7efd] rounded-md p-1 cursor-pointer"
+              className="hover:bg-[#0b7efd] active:bg-[#0b7efd]  rounded-md p-1 cursor-pointer"
             >
               Newest
             </li>
             <li
               onClick={() => sortOptionsHandler("Increasing price")}
-              className="hover:bg-[#0b7efd] rounded-md p-1 cursor-pointer"
+              className="hover:bg-[#0b7efd] active:bg-[#0b7efd]  rounded-md p-1 cursor-pointer"
             >
               Increasing price
             </li>
             <li
               onClick={() => sortOptionsHandler("Decreasing price")}
-              className="hover:bg-[#0b7efd] rounded-md p-1 cursor-pointer"
+              className="hover:bg-[#0b7efd] active:bg-[#0b7efd]  rounded-md p-1 cursor-pointer"
             >
               Decreasing price
             </li>
           </ul>
         </div>
       </div>
-      <ProductsGrid />
+      <div className="flex justify-end gap-4">
+        <div className="hidden xl:block">
+          {/* switched filtersRef prop to optional to prevent a conflict that happen when clicking on filters botton, the hidden style class is removed and added at the same time, resulting on ProductsPriceRage component not showing */}
+          <ProductsPriceRange key="big-screen"/>
+        </div>
+        <div className="flex-auto">
+          <ProductsGrid />
+        </div>
+      </div>
     </section>
   );
 }

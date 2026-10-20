@@ -15,14 +15,14 @@ export default function Navbar({onCartOpen}: NavbarProps) {
     <>
       <div></div>
       <div className="flex items-center">
-        <img src={appLogo} alt="app logo" className="h-18" />
+        <img src={appLogo} alt="app logo" className="h-14" />
       </div>
 
       <div onClick={onCartOpen} className="relative">
         <img
           src={cartLogo}
           alt="cart logo"
-          className="size-10 cursor-pointer"
+          className="size-8 cursor-pointer"
         />
         {cartItemsCount > 0 ? (
           <p className="text-xs absolute top-0.5 left-6 bg-[#0b7efd] rounded-full size-4 text-center text-stone-50 animate-fade-in">

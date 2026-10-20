@@ -8,27 +8,27 @@ export default function CartItemCard({ product }: CartItemCardProps) {
 
   return (
     <>
-      <div className="relative flex bg-gray-100 rounded-xl m-3 border border-gray-300 w-90 h-35">
-        <div className="min-w-30 m-2 flex justify-center">
+      <div className="relative flex bg-gray-100 rounded-xl m-2 p-1 border border-gray-300 w-[96%] h-34">
+        <div className="min-w-30 min-h-100 m-2 flex justify-center">
           <img
             src={product.image}
             alt="blue fairphone 6 plus"
-            className="h-30"
+            className="h-24"
           />
         </div>
         <div>
-          <h5 className="text-[#001e58]">{product.name}</h5>
+          <h6 className="text-[#001e58]">{product.name}</h6>
           <div className="flex gap-2 items-center">
-            <p className="font-bold text-xl text-[#0b7efd]">
+            <p className="font-bold text-md text-[#0b7efd]">
               {product.discount > 0 ? Math.round(product.price - product.price * product.discount / 100) : product.price}
                Dh
             </p>
             {product.discount > 0 ? <p className="line-through text-stone-500">{product.price} Dh</p> : ''}
             
           </div>
-          <p className="text-stone-500">Quantity: {product.quantity}</p>
+          <p className="text-stone-500 text-sm">Quantity: {product.quantity}</p>
         </div>
-        <div onClick={()=> removeFromCart(product.id)} className="absolute bottom-2 right-2 border border-gray-300 p-2 rounded-xl hover:bg-red-300 cursor-pointer">
+        <div onClick={()=> removeFromCart(product.id)} className="absolute bottom-2 right-2 border border-gray-300 p-2 rounded-xl hover:bg-red-300 active:bg-red-300 cursor-pointer">
           <img src={recycleBinIcon} alt="recycle bin" className="size-4" />
         </div>
       </div>

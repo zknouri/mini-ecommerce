@@ -9,8 +9,6 @@ import ProductsContextProvider from "./store/ProductsContext";
 
 function App() {
   const [cartIsOpen, setCartIsOpen] = useState<boolean>(false);
-  const sortRef = useRef<HTMLUListElement>(null); // Sort menu toggling
-  const filtersRef = useRef<HTMLDivElement>(null); // Filters menu toggling
 
   function openCartHandler(): void {
     setCartIsOpen(true);
@@ -22,7 +20,7 @@ function App() {
 
   return (
     <CartContextProvider>
-      <header className="z-30 sticky top-0 bg-stone-50 flex justify-between items-center p-4">
+      <header className="z-30 sticky top-0 bg-stone-50 flex justify-between items-center p-4 xl:px-10 2xl:px-46 3xl:px-56 4xl:px-76">
         <Navbar onCartOpen={openCartHandler} />
       </header>
       <main className="m-6">
@@ -30,7 +28,7 @@ function App() {
           <CartDrawer onCartClose={closeCartHandler} />
         </Modal>
         <ProductsContextProvider>
-          <Storefront sortRef={sortRef} filtersRef={filtersRef} />
+          <Storefront/>
         </ProductsContextProvider>
       </main>
     </CartContextProvider>
