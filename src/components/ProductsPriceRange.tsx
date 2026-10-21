@@ -9,7 +9,7 @@ import type {
 } from "../utils/types";
 
 export default function ProductsPriceRange({
-  filtersRef
+  filtersRef,
 }: ProductsPriceRangeProps) {
   const { products, setFilters, resetFilters } = useProductsContext();
   const rangeRef = useRef<HTMLDivElement>(null); // Range width and position change
@@ -226,12 +226,13 @@ export default function ProductsPriceRange({
       </div>
       <div className="flex gap-2 justify-end">
         <button
-          onClick={() =>
+          onClick={() => {
             setFilters("price-range", {
               minimum: rangeValues.minValue,
               maximum: rangeValues.maxValue,
-            })
-          }
+            });
+            filtersRef?.current?.classList.toggle("hidden");
+          }}
           className="p-1.5 font-bold border-2 border-stone-50 xl:border-[#001e58] xl:text-[#001e58] rounded-md xl:hover:text-stone-50 hover:bg-[#0b7efd] active:bg-[#0b7efd] active:border-[#0b7efd] hover:border-[#0b7efd] cursor-pointer"
         >
           Apply
