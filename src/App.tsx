@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import CartDrawer from "./components/CartDrawer";
 import Modal from "./components/Modal";
