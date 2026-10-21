@@ -14,7 +14,7 @@ export default function CartDrawer({ onCartClose }: CartDrawerProps) {
           <h3 className="text-[#001e58]">Phone Shop Cart</h3>
           <button
             onClick={onCartClose}
-            className="size-10 text-xl border border-gray-400 pt-1 pb-2 rounded-xl hover:bg-red-500 hover:text-stone-50 text-[#001e58] cursor-pointer"
+            className="size-10 text-xl border border-gray-400 pt-1 pb-2 rounded-xl active:bg-red-500 hover:bg-red-500 hover:text-stone-50 active:text-stone-50 text-[#001e58] cursor-pointer"
           >
             &#10008;
           </button>

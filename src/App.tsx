@@ -24,7 +24,7 @@ function App() {
         <header className="z-30 sticky top-0 bg-stone-50 flex justify-between items-center p-4 xl:px-10 2xl:px-46 3xl:px-56 4xl:px-76">
           <Navbar onCartOpen={openCartHandler} />
         </header>
-        <main className="min-h-svh m-6">
+        <main className="min-h-svh p-6 bg-linear-to-b from-[#f4f4fe] from-0% to-[#f4f4fe] to-100%">
           <Modal open={cartIsOpen} onClose={closeCartHandler}>
             <CartDrawer onCartClose={closeCartHandler} />
           </Modal>
