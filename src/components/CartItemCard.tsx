@@ -8,12 +8,12 @@ export default function CartItemCard({ product }: CartItemCardProps) {
 
   return (
     <>
-      <div className="relative flex bg-gray-100 rounded-xl m-2 p-1 border border-gray-300 w-[96%] h-34">
-        <div className="min-w-30 min-h-100 m-2 flex justify-center">
+      <div className="relative flex bg-gray-100 rounded-xl m-2 p-1 border border-gray-300 w-[98%] h-34">
+        <div className="min-w-24 min-h-100 m-2 flex justify-center">
           <img
             src={product.image}
             alt="blue fairphone 6 plus"
-            className="h-24"
+            className="h-26"
           />
         </div>
         <div>
@@ -23,7 +23,7 @@ export default function CartItemCard({ product }: CartItemCardProps) {
               {product.discount > 0 ? Math.round(product.price - product.price * product.discount / 100) : product.price}
                Dh
             </p>
-            {product.discount > 0 ? <p className="line-through text-stone-500">{product.price} Dh</p> : ''}
+            {product.discount > 0 ? <p className="line-through text-xs text-stone-500">{product.price} Dh</p> : ''}
             
           </div>
           <p className="text-stone-500 text-sm">Quantity: {product.quantity}</p>

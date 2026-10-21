@@ -15,7 +15,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           &#10084;
         </button>
         {product.discount > 0 ? (
-          <p className="absolute w-19 text-center text-stone-50 bg-red-500/80 hover:bg-red-500 active:bg-red-500 top-46 left-55 p-0.5 rounded-md">
+          <p className="absolute w-19 text-center text-stone-50 bg-red-500/80 hover:bg-red-500 active:bg-red-500 top-46 left-55 p-0.5 rounded-md animate-pulse">
             {product.discount}% OFF
           </p>
         ) : (

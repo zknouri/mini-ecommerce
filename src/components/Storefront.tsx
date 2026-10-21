@@ -68,7 +68,7 @@ export default function Storefront() {
             Filters
           </button>
           {/* --- FILTERS MENU --- */}
-          <div className="">
+          <div className="block xl:hidden">
             <ProductsPriceRange key="small-screen" filtersRef={filtersRef} />
           </div>
         </div>
